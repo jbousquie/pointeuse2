@@ -1,3 +1,5 @@
+use pointeuse2::get_ohris_1;
+
 fn main() {
-    println!("Hello, world!");
+    get_ohris_1();
 }
