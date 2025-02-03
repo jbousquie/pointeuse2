@@ -1,5 +1,10 @@
-use pointeuse2::get_ohris_1;
+use std::env;
+use pointeuse2::punch_orhis;
 
+// usage :  ./pointeuse2 loginCAS passwordCAS
 fn main() {
-    get_ohris_1();
+    let args = env::args().collect::<Vec<String>>();
+    let login = &args[1];
+    let password = &args[2];
+    punch_orhis(login, password);
 }

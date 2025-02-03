@@ -242,3 +242,92 @@ x-iplb-instance: 54244
 Keep-Alive: timeout=15, max=98
 Connection: Keep-Alive
 Transfer-Encoding: chunked
+
+
+// Punch sortie
+// req : 
+GET /fr/time/punch/add_virtual HTTP/1.1
+Host: ohris.ut-capitole.fr
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:134.0) Gecko/20100101 Firefox/134.0
+Accept: application/json, text/javascript, */*; q=0.01
+Accept-Language: fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3
+Accept-Encoding: gzip, deflate, br, zstd
+Referer: https://ohris.ut-capitole.fr/fr/
+X-Requested-With: XMLHttpRequest
+Connection: keep-alive
+Cookie: SERVERID177380=72a77181|Z6CNl|Z6CNk; __Secure-sess=duf3rk8gquq2fuam9jsgecli7b
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-origin
+Priority: u=0
+Pragma: no-cache
+Cache-Control: no-cache
+
+// rep : 
+HTTP/1.1 200 OK
+Date: Mon, 03 Feb 2025 09:34:16 GMT
+Server: Apache
+x-frame-options: SAMEORIGIN
+referrer-policy: strict-origin-when-cross-origin
+cache-control: max-age=0, must-revalidate, private
+link: <https://univ-tls1.ohris.info/api/docs.jsonld>; rel="http://www.w3.org/ns/hydra/core#apiDocumentation"
+x-robots-tag: noindex
+expires: Mon, 03 Feb 2025 09:34:17 GMT
+x-xss-protection: 1; mode=block
+x-content-type-options: nosniff
+permissions-policy: accelerometer=(), geolocation=('self'), fullscreen=(), ambient-light-sensor=(), autoplay=(), battery=(), camera=(), display-capture=('self')
+content-security-policy: default-src https: 'unsafe-inline' 'unsafe-eval' ohris.info maxcdn.bootstrapcdn.com; img-src 'self' https://maps.gstatic.com https://maps.googleapis.com data: blob:;
+content-type: application/json
+x-iplb-request-id: C13130A9:AF10_93878F6C:01BB_67A08D98_6988C9:1C24
+strict-transport-security: max-age=15768000
+x-iplb-instance: 54299
+set-cookie: SERVERID177380=72a77181|Z6CNn|Z6CNk; path=/; HttpOnly
+Keep-Alive: timeout=15, max=90
+Connection: Keep-Alive
+Transfer-Encoding: chunked
+
+JSON : {"result":"success","message":"Sortie \u00e0 10h34 enregistr\u00e9e"}
+
+// Punch entrée
+//req : 
+GET /fr/time/punch/add_virtual HTTP/1.1
+Host: ohris.ut-capitole.fr
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:134.0) Gecko/20100101 Firefox/134.0
+Accept: application/json, text/javascript, */*; q=0.01
+Accept-Language: fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3
+Accept-Encoding: gzip, deflate, br, zstd
+Referer: https://ohris.ut-capitole.fr/fr/
+X-Requested-With: XMLHttpRequest
+Connection: keep-alive
+Cookie: SERVERID177380=72a77181|Z6CNn|Z6CNk; __Secure-sess=duf3rk8gquq2fuam9jsgecli7b
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-origin
+Priority: u=0
+Pragma: no-cache
+Cache-Control: no-cache
+
+// rep :
+HTTP/1.1 200 OK
+Date: Mon, 03 Feb 2025 09:35:43 GMT
+Server: Apache
+x-frame-options: SAMEORIGIN
+referrer-policy: strict-origin-when-cross-origin
+cache-control: max-age=0, must-revalidate, private
+link: <https://univ-tls1.ohris.info/api/docs.jsonld>; rel="http://www.w3.org/ns/hydra/core#apiDocumentation"
+x-robots-tag: noindex
+expires: Mon, 03 Feb 2025 09:35:44 GMT
+x-xss-protection: 1; mode=block
+x-content-type-options: nosniff
+permissions-policy: accelerometer=(), geolocation=('self'), fullscreen=(), ambient-light-sensor=(), autoplay=(), battery=(), camera=(), display-capture=('self')
+content-security-policy: default-src https: 'unsafe-inline' 'unsafe-eval' ohris.info maxcdn.bootstrapcdn.com; img-src 'self' https://maps.gstatic.com https://maps.googleapis.com data: blob:;
+content-type: application/json
+x-iplb-request-id: C13130A9:B6A2_93878F6C:01BB_67A08DEF_6A0E67:13AD
+strict-transport-security: max-age=15768000
+x-iplb-instance: 54244
+set-cookie: SERVERID177380=72a77181|Z6CN8|Z6CNk; path=/; HttpOnly
+Keep-Alive: timeout=15, max=100
+Connection: Keep-Alive
+Transfer-Encoding: chunked
+
+JSON : {"result":"success","message":"Entr\u00e9e \u00e0 10h35 enregistr\u00e9e"}
