@@ -13,10 +13,11 @@ $command = $exe_path . " " . $login . " " . $password;
 $output = array();
 $return_var = 0;
 exec($command, $output, $return_var);
-if (len($output) > 0) {
-    echo $output[0];
+$len = count($output);
+if ($len == 0) {
+    echo("Pas de réponse de Filou");
 }
 else {
-    echo "Pas de réponse de Filou";
+    echo($output[0]);
 }
 ?>
