@@ -94,6 +94,6 @@ pub fn punch_orhis(login: &str, password: &str) {
                                 .send()
                                 .expect("Erreur de la requête GET xhr de punch");
     let json: JsonMsg = xhr_resp.json().expect("Erreur de récupération du JSON de la réponse xhr");
-    println!("{}\n{}", json.result, json.message);
+    println!("{}\n{}", json.message, json.result);
 
 }

@@ -13,5 +13,10 @@ $command = $exe_path . " " . $login . " " . $password;
 $output = array();
 $return_var = 0;
 exec($command, $output, $return_var);
-var_dump($output);
+if (len($output) > 0) {
+    echo $output[0];
+}
+else {
+    echo "Pas de réponse de Filou";
+}
 ?>
