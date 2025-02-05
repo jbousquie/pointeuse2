@@ -1,13 +1,13 @@
 <?php
 function encode($password, $key) {
     $iv = get_iv();
-    $enc = openssl_encrypt($password, 'DES-EDE3-CBC', $key, 0, $iv);
+    $enc = urlencode(openssl_encrypt($password, 'DES-EDE3-CBC', $key, 0, $iv));
     return $enc;
 };
 
 function decode($encoded, $key) {
     $iv = get_iv();
-    $dec = openssl_decrypt($encoded, 'DES-EDE3-CBC', $key, 0, $iv);
+    $dec = urldecode(openssl_decrypt($encoded, 'DES-EDE3-CBC', $key, 0, $iv));
     return $dec;
 };
 
