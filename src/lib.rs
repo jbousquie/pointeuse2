@@ -31,7 +31,15 @@ pub fn punch_orhis(login: &str, password: &str) {
     let client = blocking::Client::builder().proxy(proxy).cookie_store(true).build().expect("Client http invalide");
     // on envoie une requête GET à l'URL de Ohris et on suit les redirections par défaut
     // on doit recevoir le formulaire de login de LemonLDAP comme réponse
-    let resp = client.get(URL_OHRIS).send().expect("Erreur de la requête vers Ohris ou de la redirection vers LemonLDAP");
+    let resp = client
+                            .get(URL_OHRIS)
+                            .header("Accept","text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
+                            .header("Accept-Language", "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7")
+                            .header("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.2 Safari/605.1.15")
+                            .header("Cache-Control", "max-age=0")
+                            .header("Connection", "keep-alive")
+                            .send()
+                            .expect("Erreur de la requête vers Ohris ou de la redirection vers LemonLDAP");
     
     // on récupère le cookie LEMONLDAPAPPDATA qui contient une string de données JSON url-encodées 
     let lemon_ldap_data_cookie = resp.cookies().find(|cookie| cookie.name().eq(LEMONLDAP_COOKIE_NAME)).expect("Aucun cookie LEMONLDAPAPPDATA trouvé dans la dernière redirection");
@@ -49,7 +57,7 @@ pub fn punch_orhis(login: &str, password: &str) {
     let login_url = format!("{}/{}?service={}", url_cas, login_path, urlencoding::encode(URL_OHRIS));
 
 
-    // Scraping du formulaire de login
+    // Scraping du formulaire de login LemonLDAP
     // on analyse le corps de la réponse du formulaire de login HTML
     let body = resp.text().unwrap();
     let document = scraper::Html::parse_document(&body);
@@ -70,13 +78,23 @@ pub fn punch_orhis(login: &str, password: &str) {
     };
 
     // Evvoi de la requête d'authentification POST sur LemonLDAP
-    let auth_resp = client.post(login_url).form(&[
+    let auth_resp = client
+        .post(login_url).
+        form(&[
         ("user", login),
         ("password", password),
         ("timezone", "1"),
         ("skin", "ut-capitole.fr"),
         ("token", token),
-    ]).send().expect("Erreur de la requête POST d'authentification sur LemonLDAP");
+        ])
+        .header("Accept","text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
+        .header("Accept-Language", "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7")
+        .header("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.2 Safari/605.1.15")
+        .header("Cache-Control", "max-age=0")
+        .header("Connection", "keep-alive")
+        .header("Content-Type", "application/x-www-form-urlencoded")
+        .send()
+        .expect("Erreur de la requête POST d'authentification sur LemonLDAP");
 
     // On s'assure que l'authentification a réussi en vérifiant la redirection vers la page d'accueil de Ohris
     let final_url = auth_resp.url().as_str(); 
@@ -91,6 +109,10 @@ pub fn punch_orhis(login: &str, password: &str) {
                                 .get(URL_PUNCH)
                                 .header("X-Requested-With", "XMLHttpRequest")
                                 .header("Accept","application/json, text/javascript, */*; q=0.01")
+                                .header("Accept-Language", "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7")
+                                .header("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.2 Safari/605.1.15")
+                                .header("Cache-Control", "max-age=0")
+                                .header("Connection", "keep-alive")
                                 .send()
                                 .expect("Erreur de la requête GET xhr de punch");
     let json: JsonMsg = xhr_resp.json().expect("Erreur de récupération du JSON de la réponse xhr");
